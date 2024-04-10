@@ -1,0 +1,47 @@
+<Image style={{width:'100%', height:'40px', flex:1}} source={{uri: `data:image/jpeg;base64,${base64Image}`}} />
+
+1. SETUP
+first go over to, https://vtopcc.vit.ac.in, which would redirect you to https://vtopcc.vit.ac.in/vtop/open/page now once you're at this page, run, 
+(function() { 
+                const response = { 
+                    success: false 
+                }; 
+                $.ajax({ 
+                    type: 'POST', 
+                    url: '/vtop/prelogin/setup', 
+                    data: $('#stdForm').serialize(), 
+                    async: false, 
+                    success: function(res) { 
+                        response.success = true; 
+                    } 
+                }); 
+                return response; 
+                })();
+
+*document.querySelector(`[onclick="javascript:submitForm('stdForm')"]`).click()*
+
+*try {
+                this.reloadPage("/login", false);
+            } catch (Exception e) {
+                error(103, e.getLocalizedMessage());
+            }
+        }* not sure how to use this.
+
+if it returns a true, replace the website adress with https://vtopcc.vit.ac.in/vtop/login and it takes you to your portal.
+
+2. Captcha determination, to check which captcha you're working with, once in the login page, run, 
+(function() { 
+                const response = { 
+                    captcha_type: 'DEFAULT' 
+                }; 
+                if ($('input[id=\gResponse\]').length === 1) { 
+                   response.captcha_type = 'GRECAPTCHA'; 
+                } 
+                return response; 
+                })();
+
+$('input[id=\gResponse\]').length == 1 ? "DEFAULT" : "GRECAPTCHA"
+
+when this is run, it returns DEFAULT if its the vit thingy or GRECAPTCHA if is the google's version of it.
+
+3. If its the 
